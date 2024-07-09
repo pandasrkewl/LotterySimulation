@@ -1,4 +1,4 @@
-# LotterySimulation
+# Lottery Simulation
 
 <b>How it first started: </b>
 <p>
