@@ -1,6 +1,7 @@
 # LotterySimulation
 
-<b>How it first started: <p></b>
+<b>How it first started: </b>
+<p>
   In 11th grade, my English teacher was entering the Western States Endurance Run Lottery. He asked the class what the probability of his 1 ticket getting chosen would be. And because I couldn't think of any statistics methods/equations to solve the problem, I thought I could solve it with a lottery simulation. I don't have the code I originally wrote in 2022, but I recreated it the following year when my teacher entered the lottery the second time.
 </p>
 <p><b>Results:</b></p>
