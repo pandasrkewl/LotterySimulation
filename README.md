@@ -5,9 +5,11 @@
 </p>
 <p><b>Results:</b></p>
 <p>
-  Google sheets of the lottery simulations: https://docs.google.com/spreadsheets/d/1GBX95m4VYqz6NsJMMX0xKijTMVQd4r3G/edit?usp=sharing&ouid=104937579217652113613&rtpof=true&sd=true </br>
-  Actual WSER lottery: </br>
-  [2022](https://www.wser.org/2021/12/02/2022-wser-lottery-numbers/) 
-  [2023](https://www.wser.org/2022/12/02/2023-lottery-statistics/) 
-  [2024](https://www.wser.org/2023/11/30/2024-lottery-statistics/) 
+  
+[Google sheets of the lottery simulations](https://docs.google.com/spreadsheets/d/1GBX95m4VYqz6NsJMMX0xKijTMVQd4r3G/edit?usp=sharing&ouid=104937579217652113613&rtpof=true&sd=true) </br>
+
+Actual WSER simulations: 
+[2022](https://www.wser.org/2021/12/02/2022-wser-lottery-numbers/)
+[2023](https://www.wser.org/2022/12/02/2023-lottery-statistics/) 
+[2024](https://www.wser.org/2023/11/30/2024-lottery-statistics/) 
 </p>
