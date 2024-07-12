@@ -6,6 +6,7 @@ public class Teacher
     public static ArrayList<String> drawPool = new ArrayList<String>();
     public static ArrayList<String> chosenOnes = new ArrayList<String>();
     public static ArrayList<String> repeats = new ArrayList<String>();
+    public static int[] counters = new int[9];
     public static int oneSC = 0;
     public static int twoSC = 0;
     public static int fourSC = 0;
@@ -28,21 +29,17 @@ public class Teacher
             resetLottery();
         }
         System.out.println("Teacher: "+teachercounter);
-        System.out.println("1 Ticket: "+oneSC);
-        System.out.println("2 Tickets: "+twoSC);
-        System.out.println("4 Tickets: "+fourSC);
-        System.out.println("8 Tickets: "+eightSC);
-        System.out.println("16 Tickets: "+sixteenSC);
-        System.out.println("32 Tickets: "+thirtytwoSC);
-        System.out.println("64 Tickets: "+sixtyfourSC);
-        System.out.println("128 Tickets: "+hundredtwentyeightSC);
-        System.out.println("256 Tickets: "+twohundredfiftysixSC);
+        for(int i = 0; i < counters.length; i++) {
+            System.out.println(String.format("%d Ticket(s): %d", (int)(Math.pow(2, i)), (int)(counters[i])));
+        }
 
-        System.out.println(System.currentTimeMillis()-timestart);
-        
-        
+        System.out.println(System.currentTimeMillis()-timestart + " milliseconds");
     }
 
+    //Adds the correct number of tickets using this setup: 
+    //  1Ticket1 is set up so:
+    //  The first number is the number of tickets that person has and the second number is that person's "ID". So if there's 3560 people with 1 ticket, the last person would be 1Ticket3560
+    //  Then, depending on how many tickets that person has, it'll be added to the drawPool that many times. 4Ticket5 will have 5 tickets named "4Ticket5" all representing 1 person.
     public static void setUpTickets() {
         for(int i = 0; i < 3560; i++) {
             drawPool.add("1Ticket"+(i+1));
@@ -92,6 +89,7 @@ public class Teacher
         }
     }
     
+    //Reset the drawPool by adding in all the chosen/repeated tickets, then cleaer the chosen/repeated lists
     public static void resetLottery() {
         for(String i : chosenOnes) {
             drawPool.add(i);
@@ -105,6 +103,10 @@ public class Teacher
             System.err.println("Error: "+drawPool.size());
     }
     
+    //Randomly selects tickets from the drawPool, checking if that person has already been chosen
+    //  If that person has already been chosen, remove that ticket from drawPool, add it to repeats list, and reroll (decrement and continue)
+    //  If that person hasn't already been chosen, remove that ticket from the drawPool and add it to the chosen list
+    //Return the list of chosen tickets once a certain number of people have been selected
     public static ArrayList<String> simulation() {
         ArrayList<String> chosen = new ArrayList<String>();
         for(int i = 0; i < 349; i++) {
@@ -120,8 +122,11 @@ public class Teacher
         return chosen;
     }
     
+    //U
     public static int results() {
-        /*int oneGC = 0;
+
+        /* To track "Group Counts" rather than the count of one individual person with that many tickets
+        int oneGC = 0;
         int twoGC = 0;
         int fourGC = 0;
         int eightGC = 0;
@@ -132,7 +137,6 @@ public class Teacher
         int twohundredfiftysixGC = 0;
         */
         boolean teacher = false;
-        
         for(int i = 0; i < chosenOnes.size(); i++) {
             String text = chosenOnes.get(i);
             int index = text.indexOf("Ticket");
@@ -140,28 +144,17 @@ public class Teacher
                 teacher = true;
                 continue;
             }
+
+            //I only track Ticket1 because I only want to count how many of one type of person is chosen within each ticket group.
+            //As a result, I get the probability of one person's chance of being chosen if they have a certain number of tickets.
             if(text.substring(index).equals("Ticket1")) {
-                String begin = text.substring(0, index);
-                if(begin.equals("1"))
-                oneSC++;
-            else if(begin.equals("2"))
-                twoSC++;
-            else if(begin.equals("4"))
-                fourSC++;
-            else if(begin.equals("8"))
-                eightSC++;
-            else if(begin.equals("16"))
-                sixteenSC++;
-            else if(begin.equals("32"))
-                thirtytwoSC++;
-            else if(begin.equals("64"))
-                sixtyfourSC++;
-            else if(begin.equals("128"))
-                hundredtwentyeightSC++;
-            else if(begin.equals("256"))
-                twohundredfiftysixSC++;
+                int begin = Integer.parseInt(text.substring(0, index));
+                begin = (int)(Math.log(begin)/Math.log(2));
+                counters[begin]++;
             }
             /*
+            Below code is for tracking what percentage of the total chosen group is represented by a certain number of tickets. A "Group Count"
+
             int ticket = Integer.parseInt(chosenOnes.get(i).substring(0, index));
             switch(ticket) {
                 case 1: oneGC++; break;
