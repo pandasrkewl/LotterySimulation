@@ -7,15 +7,6 @@ public class Teacher
     public static ArrayList<String> chosenOnes = new ArrayList<String>();
     public static ArrayList<String> repeats = new ArrayList<String>();
     public static int[] counters = new int[9];
-    public static int oneSC = 0;
-    public static int twoSC = 0;
-    public static int fourSC = 0;
-    public static int eightSC = 0;
-    public static int sixteenSC = 0;
-    public static int thirtytwoSC = 0;
-    public static int sixtyfourSC = 0;
-    public static int hundredtwentyeightSC = 0;
-    public static int twohundredfiftysixSC = 0;
 
     public static void main(String[] args) {
         long timestart = System.currentTimeMillis();
