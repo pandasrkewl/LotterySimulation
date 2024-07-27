@@ -1,5 +1,7 @@
 
-import java.util.*;
+import java.util.ArrayList;
+import java.lang.Math;
+
 
 public class WSERLottery
 {
@@ -21,6 +23,11 @@ public class WSERLottery
 
 
     public static void main(String[] args) {
+
+        System.out.println(runLottery());
+    }
+
+    public static int[] runLottery() {
         long timestart = System.currentTimeMillis();
         
         setUpTickets();
@@ -30,11 +37,10 @@ public class WSERLottery
             results();
             resetLottery();
         }
-        for(int i = 0; i < soloCount.length; i++) {
-            System.out.println(String.format("%d Ticket(s): %d", (int)(Math.pow(2, i)), (int)(soloCount[i])));
-        }
 
         System.out.println(System.currentTimeMillis()-timestart + " milliseconds");
+
+        return soloCount;
     }
 
     //Adds the correct number of tickets using this setup: 
