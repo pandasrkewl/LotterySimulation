@@ -1,4 +1,6 @@
-import time, random, math
+from time import time
+from random import randint
+from math import log2
 
 class WSERLottery:
     def __init__(self):
@@ -19,9 +21,15 @@ class WSERLottery:
         #self.numPeople = [4434, 2216, 1231, 606, 420, 256, 147, 70, 8]
 
     def runLottery(self):
-        start = time.time()
+        start = time()
 
+        setupStart = time()
         self.setUpTickets()
+        setupEnd = time()
+        simStart = 0
+        simEnd = 0
+        resultTime = 0
+        finishTime = 0
 
         numSimulations = 100
         #2022:
@@ -31,11 +39,23 @@ class WSERLottery:
         #2024:
         #numDraws = 345
         for i in range(numSimulations):
+            if i == 0:
+                simStart = time()
             self.simulation(numDraws)
+            if i == 0:
+                simEnd = time()
             self.countResults()
+            if i == 0:
+                resultTime = time()
             self.resetLottery()
+            if i == 0:
+                finishTime = time()
 
-        print(f'{time.time()-start} seconds')
+        print(f'Total: {1000*(time()-start)} milliseconds')
+        print(f'    Setup: {1000*(setupEnd-setupStart)} milliseconds')
+        print(f'    Simul: {1000*(simEnd-simStart)} milliseconds')
+        print(f'    Reslt: {1000*(resultTime-simEnd)} milliseconds')
+        print(f'    Reset: {1000*(finishTime-resultTime)} milliseconds')
         return self.soloCounts
 
 
@@ -57,7 +77,7 @@ class WSERLottery:
         rand = -1
         
         while i < numDraws:
-            rand = random.randint(0, len(self.drawPool)-1)
+            rand = randint(0, len(self.drawPool)-1)
             removed = self.drawPool[rand]
             self.drawPool.remove(removed)
             if removed in self.chosen:
@@ -73,7 +93,7 @@ class WSERLottery:
             # I only track Ticket1 because I only want to count how many of one type of person is chosen within each ticket group.
             # As a result, I get the probability of one person's chance of being chosen if they have a certain number of tickets.
             if ticket[index:] == 'Ticket1':
-                numTicket = int(math.log2(int(ticket[0:index])))
+                numTicket = int(log2(int(ticket[0:index])))
                 self.soloCounts[numTicket] += 1
 
     # Reset the drawPool by adding in all the chosen/repeated tickets, then clear the chosen/repeated lists
