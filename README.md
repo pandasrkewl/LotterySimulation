@@ -13,4 +13,6 @@ Actual WSER simulations:
 [2022](https://www.wser.org/2021/12/02/2022-wser-lottery-numbers/)
 [2023](https://www.wser.org/2022/12/02/2023-lottery-statistics/) 
 [2024](https://www.wser.org/2023/11/30/2024-lottery-statistics/) 
+[2025](https://www.wser.org/2024/12/)
+[2026](https://www.wser.org/2025/12/)
 </p>
